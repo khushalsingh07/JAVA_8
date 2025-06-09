@@ -41,6 +41,7 @@ public class OperationThroughCollectors {
                 .collect(Collectors.toList());*/
         //System.out.println("topThreePercentageHolder  : "+topThreePercentageHolder);
         //Output: topThreePercentageHolder  : [Student{id=101010, name='Chris', percentage=89.8, specialization='Computers'}, Student{id=333, name='Ruth', percentage=87.2, specialization='Computers'}, Student{id=888, name='Sunil', percentage=86.7, specialization='History'}]
+
         //System.out.println();
         //Only name field for top three percentage gainers
         //topThreePercentageHolder.forEach((Student student)-> System.out.println(""+student.getName()));
@@ -159,7 +160,7 @@ public class OperationThroughCollectors {
         //System.out.println("collectionAsPartition  : "+collectionAsPartition);
 
         //3.14) Collectors.collectingAndThen() :
-        //This is a special method which lets you to perform one more action on the result after collecting the result.
+        //This is a special method which lets you perform one more action on the result after collecting the result.
         //Example : Collecting first three students into List and making it unmodifiable
 
        /* List<Student> unmodifiedable = listOfStudents

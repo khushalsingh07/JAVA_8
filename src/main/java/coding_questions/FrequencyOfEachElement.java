@@ -13,6 +13,8 @@ public class FrequencyOfEachElement {
         Map<String, Long> collect1 = stationeryList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println("collect1   :: "+collect1);
 
+        System.out.println();
+        System.out.println();
 
         // Work done on Array
         String[] strArr = {"Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil"};

@@ -3,6 +3,7 @@ package employee;
 import pojo.Employee;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class EmployeeTesting {
@@ -18,7 +19,7 @@ public class EmployeeTesting {
         employeeList.add(new Employee(177, "Manu Sharma", 35, "Male", "Account And Finance", 2010, 27000.0));
         employeeList.add(new Employee(188, "Wang Liu", 31, "Male", "Product Development", 2015, 34500.0));
         employeeList.add(new Employee(199, "Amelia Zoe", 24, "Female", "Sales And Marketing", 2016, 11500.0));
-        employeeList.add(new Employee(200, "Jaden Dough", 38, "Male", "Security And Transport", 2015, 11000.5));
+        employeeList.add(new Employee(200, "Jaden Dough", 38, "Male", "Security And Transport", 2015, 11500.0));
         employeeList.add(new Employee(211, "Jasna Kaur", 27, "Female", "Infrastructure", 2014, 15700.0));
         employeeList.add(new Employee(222, "Nitin Joshi", 25, "Male", "Product Development", 2016, 28200.0));
         employeeList.add(new Employee(233, "Jyothi Reddy", 27, "Female", "Account And Finance", 2013, 21300.0));
@@ -29,11 +30,11 @@ public class EmployeeTesting {
 
         //1. How many male and female employees are there in the organization?
 
-        //Map<String, Long> genderWithCount = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
-        //System.out.println("genderWithCount  :: "+genderWithCount);
+        /*Map<String, Long> genderWithCount = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
+        System.out.println("genderWithCount  :: "+genderWithCount);*/
 
-        //Map<String, List<Employee>> genderRespectiveToListOfEmp = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender));
-        //System.out.println("genderRespectiveToListOfEmp  :: "+genderRespectiveToListOfEmp);
+        /*Map<String, List<Employee>> genderRespectiveToListOfEmp = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender));
+        System.out.println("genderRespectiveToListOfEmp  :: "+genderRespectiveToListOfEmp);*/
 
         //2. Print the name of all departments in natural order in the organization?
         //employeeList.stream().map(Employee::getDepartment).distinct().sorted().forEach(System.out::println);
@@ -77,7 +78,7 @@ public class EmployeeTesting {
             System.out.println(deptAvgSalary);
         });*/
 
-        //9. Find the youngest Employee
+        //9. Find the youngest Male Employee in Product Development
         /*Optional<Employee> youngestEmpOptional = employeeList
                 .stream()
                 .filter(e -> e.getGender() == "Male" && e.getDepartment() == "Product Development")
@@ -93,13 +94,14 @@ public class EmployeeTesting {
         System.out.println("Oldest Employee  : "+oldestEmp.getName());*/
 
         //11. Who has the most working experience in the organization?
-       /* List<Employee> collect = employeeList.stream().sorted(Comparator.comparingInt(Employee::getYearOfJoining)).collect(Collectors.toList());
+        /*List<Employee> collect = employeeList.stream().sorted(Comparator.comparingInt(Employee::getYearOfJoining)).collect(Collectors.toList());
         collect.forEach(e-> {
             System.out.println(e.toString());
         });*/
 
         //12. Who has the least working experience in the organization?
-        //employeeList.stream().sorted(Comparator.comparingInt(Employee::getYearOfJoining));
+        /*Employee first = employeeList.stream().sorted(Comparator.comparingInt(Employee::getYearOfJoining)).collect(Collectors.toList()).getFirst();
+        System.out.println("===> "+first);*/
 
         //13. How many male and female employees are there in the sales and marketing team?
         /*Map<String, Long> mapObj = employeeList.stream().filter(e -> e.getDepartment() == "Sales And Marketing")
@@ -150,11 +152,10 @@ public class EmployeeTesting {
 */
 
         // Sort Employee list in descending order
-       /* List<Employee> collectObj = employeeList.stream()
+        /*List<Employee> collectObj = employeeList.stream()
                 .sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).collect(Collectors.toList());
-        collectObj.forEach(e -> System.out.println(e.getName()+" getting "+e.getSalary()+" salary."));
+        collectObj.forEach(e -> System.out.println(e.getName()+" getting "+e.getSalary()+" salary."));*/
 
-*/
 
         // Sort Employee list in descending order(Get Highest Salary paid)
        /* List<Employee> collectObj1 = employeeList.stream()
@@ -171,10 +172,22 @@ public class EmployeeTesting {
         Employee employee = firstObj.get();
         System.out.println(employee.getName()+" getting "+employee.getSalary()+" salary");
 */
-        List<Employee> empList = employeeList.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(3).skip(1).collect(Collectors.toList());
+      /*  List<Employee> empList = employeeList.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(3).skip(1).collect(Collectors.toList());
         System.out.println();
         System.out.println("************In salary the second last and third employee********************");
         System.out.println();
         empList.forEach(e -> System.out.println(e.getName()+" getting "+e.getSalary()+" salary"));
+   */
+
+      // Picked duplicate single employee list having duplicate salary
+        /*Set<Double> duplicateSalDetail = new HashSet<>();
+        List<Employee> filteredEmpList = employeeList.stream().filter(e -> !duplicateSalDetail.add(e.getSalary())).collect(Collectors.toList());
+        System.out.println(filteredEmpList);*/
+
+        // Pick whole duplicate data
+        Set<Employee> employeeList1 = employeeList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().filter(m -> m.getValue() > 1).map(Map.Entry::getKey).collect(Collectors.toSet());
+
+        System.out.println(employeeList1);
     }
 }
