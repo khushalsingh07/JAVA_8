@@ -6,6 +6,13 @@ import java.util.logging.Logger;
 
 public class CommonElementsInTwoArray {
     private static final Logger LOGGER = Logger.getLogger(CommonElementsInTwoArray.class.getName());
+
+    /*
+      Steps:
+      1. Take two list as input
+      2. Covert 1st list into Stream and apply filter on that and pass list2 as parameter
+    */
+
     public static void main(String[] args) {
         List<Integer> list1 = Arrays.asList(71, 21, 34, 89, 56, 28);
         List<Integer> list2 = Arrays.asList(12, 56, 17, 21, 94, 34);

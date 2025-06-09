@@ -48,7 +48,8 @@ public class SortByKeyTesting {
         // The below program uses Java 8 comparingByKey() method with customized Comparator
         // to sort HashMap in increasing order of length of keys.
 
-        LinkedHashMap<String, Integer> customizedSortedHashMap = studentRecord.entrySet().stream()
+        LinkedHashMap<String, Integer> customizedSortedHashMap = studentRecord.entrySet()
+                .stream()
                 .sorted(Map.Entry.comparingByKey((o1, o2) -> o1.length() - o2.length()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (s1, s2) -> s2, LinkedHashMap::new));
         System.out.println("customizedSortedHashMap  ::: "+customizedSortedHashMap);

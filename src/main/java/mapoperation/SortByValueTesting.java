@@ -36,7 +36,8 @@ public class SortByValueTesting {
 
         //Sort Hash Map in reverse order by using Comparator
         LinkedHashMap<Integer, String> reversedHashMapByComparator = studentRecord.entrySet()
-                .stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (s1, s2) -> s2, LinkedHashMap::new));
         System.out.println("reversedHashMapByComparator  :: "+reversedHashMapByComparator);
 
@@ -45,7 +46,8 @@ public class SortByValueTesting {
         System.out.println();
 
         LinkedHashMap<Integer, String> customizedSortingByValues = studentRecord.entrySet()
-                .stream().sorted(Map.Entry.comparingByValue((o1, o2) -> o1.length() - o2.length()))
+                .stream()
+                .sorted(Map.Entry.comparingByValue((o1, o2) -> o1.length() - o2.length()))
                 //(Descending Order).stream().sorted(Map.Entry.comparingByValue((o1, o2) -> o2.length() - o1.length()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (s1, s2) -> s2, LinkedHashMap::new));
         System.out.println("customizedSortingByValues  :: "+customizedSortingByValues);

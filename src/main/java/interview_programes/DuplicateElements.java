@@ -12,5 +12,6 @@ public class DuplicateElements {
         integerList.stream()
                 .filter(n -> !hashSet.add(n)) //Add data when data is duplicate or already present in hash set
                 .forEach(System.out::println);
+
     }
 }
